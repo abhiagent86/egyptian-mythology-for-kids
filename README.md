@@ -14,8 +14,6 @@ Website: https://abhiagent86.github.io/egyptian-mythology-for-kids/
 ### Five Stories from Ancient Egypt
 
 - `index.html` – the storybook as a web page (open in any browser)
-- `print.html` – the A4 print layout
-- `Five-Stories-from-Ancient-Egypt.pdf` – ready-to-print PDF, 6 pages
 
 The five stories: Ra and the Sun Boat · The Sky, the Earth and Five Extra Days · Isis Finds Osiris · Horus and the Magic Eye · The Heart and the Feather.
 
