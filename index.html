@@ -29,14 +29,15 @@ img,svg{max-width:100%}
 .tiles .go{margin-top:auto;font-weight:800;color:var(--nile)}
 
 .site-nav{position:sticky;top:0;z-index:10;background:#0a1b36;border-bottom:2px solid #f0b93f}
-.site-nav ul{max-width:860px;margin:0 auto;padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px 4px;list-style:none}
-.site-nav a{display:block;padding:6px 11px;border-radius:999px;color:#f7edcf;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.2;text-decoration:none}
+.site-nav ul{max-width:860px;margin:0 auto;padding:8px 12px;display:flex;gap:4px;list-style:none;overflow-x:auto;scrollbar-width:none}
+.site-nav ul::-webkit-scrollbar{display:none}
+.site-nav a{display:block;padding:6px 10px;border-radius:999px;color:#f7edcf;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.2;text-decoration:none;white-space:nowrap}
 .site-nav a:hover,.site-nav a:focus-visible{background:#16335d;outline:2px solid #f0b93f}
 .site-nav a[aria-current="page"]{background:#f0b93f;color:#10294d}
 </style>
 </head>
 <body>
-<nav class="site-nav" aria-label="Site"><ul><li><a href="./" aria-current="page">Home</a></li><li><a href="stories/five-stories/">Stories</a></li><li><a href="gods/">Gods</a></li></ul></nav>
+<nav class="site-nav" aria-label="Site"><ul><li><a href="./" aria-current="page">Home</a></li><li><a href="stories/five-stories/">Stories</a></li><li><a href="gods/">Gods</a></li><li><a href="places/">Places</a></li><li><a href="history/">History</a></li><li><a href="quiz/">Quiz</a></li></ul></nav>
 <main>
 <header>
   <svg class="stars" viewBox="0 0 320 70" role="img" aria-label="Three pyramids under a starry sky">
@@ -47,11 +48,14 @@ img,svg{max-width:100%}
     <path d="M220 70 L265 34 L310 70z" fill="#d9a441"/><path d="M265 34 L310 70 L280 70z" fill="#b98228"/>
   </svg>
   <h1>Egyptian Mythology for Kids</h1>
-  <p>Stories and pictures about the gods of ancient Egypt, for readers aged 5 to 12.</p>
+  <p>Stories, gods, places and history from ancient Egypt, for readers aged 6 to 12.</p>
 </header>
 <ul class="tiles">
-  <li><a href="stories/five-stories/"><span class="age">Ages 5 to 7</span><h2>Five Stories from Ancient Egypt</h2><span>A picture book with five famous myths.</span><span class="go">Read the stories</span></a></li>
-  <li><a href="gods/"><span class="age">Ages 7 to 12</span><h2>Gods and Goddesses</h2><span>Ten gods, their names in hieroglyphs and how to spot them.</span><span class="go">Meet the gods</span></a></li>
+  <li><a href="stories/five-stories/"><span class="age">Ages 6 to 8</span><h2>Five Stories from Ancient Egypt</h2><span>A picture book with five famous myths.</span><span class="go">Read the stories</span></a></li>
+  <li><a href="gods/"><span class="age">Ages 7 to 12</span><h2>Gods and Goddesses</h2><span>Ten gods, their names in hieroglyphs, real statues and a family tree.</span><span class="go">Meet the gods</span></a></li>
+  <li><a href="places/"><span class="age">Ages 6 to 12</span><h2>Top 10 Places in Cairo and Giza</h2><span>Pyramids, the Sphinx, museums and a busy old market.</span><span class="go">See the places</span></a></li>
+  <li><a href="history/"><span class="age">Ages 8 to 12</span><h2>The Story of Egypt</h2><span>5,000 years of history on one timeline.</span><span class="go">Travel through time</span></a></li>
+  <li><a href="quiz/"><span class="age">Ages 6 to 12</span><h2>Egyptian Gods Quiz</h2><span>Twelve questions about the gods and their stories.</span><span class="go">Take the quiz</span></a></li>
 </ul>
 </main>
 </body>

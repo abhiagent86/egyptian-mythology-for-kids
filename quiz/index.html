@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Egyptian Gods Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: a lapis night sky with papyrus cards, matching the storybook. Single theme by choice. */
+  --lapis:#10294d;--lapis-deep:#0a1b36;--nile:#1f8a9c;--gold:#f0b93f;--papyrus:#f7edcf;--papyrus-edge:#e3d19c;--ink:#2b2116;--carnelian:#cf4a2e;
+  --font-display:"Baloo 2","Trebuchet MS","Comic Sans MS",system-ui,sans-serif;--font-body:"Nunito","Trebuchet MS",system-ui,sans-serif;color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--lapis-deep)}
+body{margin:0;background:radial-gradient(circle at 20% 0%,#1c4274 0,transparent 45%),var(--lapis);color:var(--papyrus);font-family:var(--font-body);font-size:19px;line-height:1.5}
+main{max-width:860px;margin:0 auto;padding:28px 16px 56px;display:flex;flex-direction:column;gap:22px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+header h1{font-size:clamp(2.1rem,8.5vw,3.3rem);color:var(--gold);font-weight:800}
+header p{margin:10px 0 0;max-width:32em}
+img,svg{max-width:100%}
+.card{background:var(--papyrus);color:var(--ink);border:3px solid var(--papyrus-edge);border-radius:22px}
+footer{font-size:.9rem;line-height:1.45;opacity:.9;border-top:1px solid #35548a;padding-top:16px}
+footer b{color:var(--gold)}
+footer p{margin:0 0 8px;max-width:46em}
+.score{position:sticky;top:50px;z-index:5;background:var(--lapis-deep);border:2px solid var(--gold);border-radius:16px;padding:10px 16px;font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:var(--gold);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.score button{font:inherit;font-size:1rem;background:var(--gold);color:var(--lapis);border:0;border-radius:999px;padding:6px 16px;cursor:pointer}
+.qs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+.q{padding:16px 18px}
+.q h2{font-size:1.35rem;color:var(--lapis);display:flex;gap:12px;align-items:flex-start}
+.qn{flex:none;min-width:34px;height:34px;border-radius:50%;background:var(--carnelian);color:#fff;display:grid;place-items:center;font-size:1.05rem}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.opts button{font:800 1.1rem var(--font-body);padding:12px;border-radius:14px;border:3px solid var(--papyrus-edge);background:#fff7de;color:var(--ink);cursor:pointer}
+.opts button:hover:not(:disabled),.opts button:focus-visible{border-color:var(--nile);outline:none}
+.opts button.right{background:#cfeccc;border-color:#2f8f46}
+.opts button.wrong{background:#f6cfc4;border-color:var(--carnelian)}
+.opts button:disabled{cursor:default}
+.why{margin:12px 0 0;background:#fff7de;border-left:6px solid var(--nile);border-radius:10px;padding:8px 12px}
+.end{padding:18px;text-align:left}
+.end h2{color:var(--lapis);font-size:1.6rem}
+.end p{margin:6px 0 0}
+.site-nav{position:sticky;top:0;z-index:10;background:#0a1b36;border-bottom:2px solid #f0b93f}
+.site-nav ul{max-width:860px;margin:0 auto;padding:8px 12px;display:flex;gap:4px;list-style:none;overflow-x:auto;scrollbar-width:none}
+.site-nav ul::-webkit-scrollbar{display:none}
+.site-nav a{display:block;padding:6px 10px;border-radius:999px;color:#f7edcf;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.2;text-decoration:none;white-space:nowrap}
+.site-nav a:hover,.site-nav a:focus-visible{background:#16335d;outline:2px solid #f0b93f}
+.site-nav a[aria-current="page"]{background:#f0b93f;color:#10294d}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Site"><ul><li><a href="../">Home</a></li><li><a href="../stories/five-stories/">Stories</a></li><li><a href="../gods/">Gods</a></li><li><a href="../places/">Places</a></li><li><a href="../history/">History</a></li><li><a href="../quiz/" aria-current="page">Quiz</a></li></ul></nav>
+<main>
+<header>
+  <h1>Egyptian Gods Quiz</h1>
+  <p>How well do you know the gods and their stories? Tap an answer for each question. All the answers are in the <a href="../stories/five-stories/" style="color:var(--gold);font-weight:800">stories</a> and on the <a href="../gods/" style="color:var(--gold);font-weight:800">gods page</a>.</p>
+</header>
+<div class="score"><span id="score">Score: 0 out of 12</span><button type="button" id="again">Start again</button></div>
+<ol class="qs"><li class="card q"><h2><span class="qn">1</span>Who sails the sun across the sky in a boat?</h2><div class="opts"><button type="button" data-ok="0">Geb</button><button type="button" data-ok="1">Ra</button><button type="button" data-ok="0">Anubis</button></div><p class="why" hidden><b></b> Ra sails his golden boat across the sky every day.</p></li><li class="card q"><h2><span class="qn">2</span>Which god has the head of a falcon and became king of Egypt?</h2><div class="opts"><button type="button" data-ok="1">Horus</button><button type="button" data-ok="0">Thoth</button><button type="button" data-ok="0">Set</button></div><p class="why" hidden><b></b> Horus has a falcon head and wears the red and white crown.</p></li><li class="card q"><h2><span class="qn">3</span>Who is the goddess of the sky?</h2><div class="opts"><button type="button" data-ok="0">Isis</button><button type="button" data-ok="0">Ma'at</button><button type="button" data-ok="1">Nut</button></div><p class="why" hidden><b></b> Nut bends over the earth and the stars shine on her body.</p></li><li class="card q"><h2><span class="qn">4</span>Who holds the sky up high above the earth?</h2><div class="opts"><button type="button" data-ok="1">Shu</button><button type="button" data-ok="0">Osiris</button><button type="button" data-ok="0">Horus</button></div><p class="why" hidden><b></b> Shu, the god of air, lifted Nut up.</p></li><li class="card q"><h2><span class="qn">5</span>How many extra days did Thoth win from the Moon?</h2><div class="opts"><button type="button" data-ok="0">Three</button><button type="button" data-ok="0">Ten</button><button type="button" data-ok="1">Five</button></div><p class="why" hidden><b></b> Thoth won five extra days, so a year has 365 days.</p></li><li class="card q"><h2><span class="qn">6</span>Who tricked Osiris and shut him in a box?</h2><div class="opts"><button type="button" data-ok="0">Ra</button><button type="button" data-ok="1">Set</button><button type="button" data-ok="0">Anubis</button></div><p class="why" hidden><b></b> His jealous brother Set played the trick.</p></li><li class="card q"><h2><span class="qn">7</span>What did Isis turn into when she searched for Osiris?</h2><div class="opts"><button type="button" data-ok="1">A bird</button><button type="button" data-ok="0">A cat</button><button type="button" data-ok="0">A fish</button></div><p class="why" hidden><b></b> Isis turned into a bird so she could fly and search.</p></li><li class="card q"><h2><span class="qn">8</span>Who fixed the hurt eye of Horus?</h2><div class="opts"><button type="button" data-ok="0">Geb</button><button type="button" data-ok="0">Nut</button><button type="button" data-ok="1">Thoth</button></div><p class="why" hidden><b></b> Wise Thoth fixed the eye with magic.</p></li><li class="card q"><h2><span class="qn">9</span>In the land of spirits, what is a heart weighed against?</h2><div class="opts"><button type="button" data-ok="0">A gold coin</button><button type="button" data-ok="1">A feather</button><button type="button" data-ok="0">A stone</button></div><p class="why" hidden><b></b> The heart is weighed against the feather of Ma'at.</p></li><li class="card q"><h2><span class="qn">10</span>Which god has the head of a black jackal?</h2><div class="opts"><button type="button" data-ok="1">Anubis</button><button type="button" data-ok="0">Set</button><button type="button" data-ok="0">Ra</button></div><p class="why" hidden><b></b> Anubis has a jackal head and guides people to Osiris.</p></li><li class="card q"><h2><span class="qn">11</span>What does Isis wear on her head?</h2><div class="opts"><button type="button" data-ok="0">A goose</button><button type="button" data-ok="0">A moon</button><button type="button" data-ok="1">A throne</button></div><p class="why" hidden><b></b> Her name means "throne", so she wears one on her head.</p></li><li class="card q"><h2><span class="qn">12</span>What is the name of the giant snake that tries to stop the sun boat?</h2><div class="opts"><button type="button" data-ok="1">Apep</button><button type="button" data-ok="0">Geb</button><button type="button" data-ok="0">Shu</button></div><p class="why" hidden><b></b> Apep is the giant snake. Ra and his friends push it away every night.</p></li></ol>
+<section class="card end" id="end" hidden><h2></h2><p></p></section>
+</main>
+<script>
+(function(){
+  var total=12, done=0, right=0;
+  var scoreEl=document.getElementById('score'), endEl=document.getElementById('end');
+  function show(){ scoreEl.textContent='Score: '+right+' out of '+total; }
+  document.querySelectorAll('.q').forEach(function(q){
+    q.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click',function(){
+        var ok=b.dataset.ok==='1';
+        q.querySelectorAll('button').forEach(function(x){ x.disabled=true; if(x.dataset.ok==='1') x.classList.add('right'); });
+        if(!ok) b.classList.add('wrong'); else right++;
+        var w=q.querySelector('.why'); w.querySelector('b').textContent= ok ? 'Yes!' : 'Not quite.'; w.hidden=false;
+        done++; show();
+        if(done===total){
+          endEl.hidden=false;
+          endEl.querySelector('h2').textContent='You got '+right+' out of '+total+'!';
+          endEl.querySelector('p').textContent= right===total ? 'Perfect! You know the gods as well as Thoth does.' : right>=total*0.7 ? 'Great work! You are a real expert on Egypt.' : 'Good try! Read the stories again and have another go.';
+          endEl.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+      });
+    });
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    done=0; right=0; show(); endEl.hidden=true;
+    document.querySelectorAll('.q button').forEach(function(x){ x.disabled=false; x.classList.remove('right','wrong'); });
+    document.querySelectorAll('.why').forEach(function(w){ w.hidden=true; });
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  show();
+})();
+</script>
+</body>
+</html>
