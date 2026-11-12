@@ -33,7 +33,7 @@ header p{margin:10px 0 0;max-width:34em;font-size:1.05rem}
 .jump{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
 .jump a{display:block;padding:6px 14px;border:2px solid var(--gold);border-radius:999px;color:var(--gold);font-weight:800;text-decoration:none}
 .jump a:focus-visible,.jump a:hover{background:var(--gold);color:var(--lapis);outline:none}
-.god{background:var(--papyrus);color:var(--ink);border:3px solid var(--papyrus-edge);border-radius:22px;padding:16px;display:grid;grid-template-columns:210px 1fr;gap:18px;scroll-margin-top:12px}
+.god{scroll-margin-top:64px;background:var(--papyrus);color:var(--ink);border:3px solid var(--papyrus-edge);border-radius:22px;padding:16px;display:grid;grid-template-columns:210px 1fr;gap:18px;scroll-margin-top:12px}
 .who{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
 .who svg{width:112px;height:112px;display:block}
 .who h2{font-size:2rem;color:var(--lapis)}
@@ -60,15 +60,22 @@ footer p{margin:0 0 8px;max-width:46em}
   .who svg{width:84px;height:84px;flex:none}
   dl{grid-template-columns:1fr}
 }
+
+.site-nav{position:sticky;top:0;z-index:10;background:#0a1b36;border-bottom:2px solid #f0b93f}
+.site-nav ul{max-width:860px;margin:0 auto;padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px 4px;list-style:none}
+.site-nav a{display:block;padding:6px 11px;border-radius:999px;color:#f7edcf;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.2;text-decoration:none}
+.site-nav a:hover,.site-nav a:focus-visible{background:#16335d;outline:2px solid #f0b93f}
+.site-nav a[aria-current="page"]{background:#f0b93f;color:#10294d}
 </style>
 </head>
 <body>
+<nav class="site-nav" aria-label="Site"><ul><li><a href="../">Home</a></li><li><a href="../stories/five-stories/">Stories</a></li><li><a href="../gods/" aria-current="page">Gods</a></li><li><a href="../posters/">Posters</a></li></ul></nav>
 <main>
 <header>
   <h1>Egyptian Gods and Goddesses</h1>
-  <p>Meet eleven gods and goddesses of ancient Egypt. Ten of them appear in <a href="../stories/five-stories/">Five Stories from Ancient Egypt</a>. Find out how to spot each one, what their name means and how it was written.</p>
+  <p>Meet the ten gods and goddesses from <a href="../stories/five-stories/">Five Stories from Ancient Egypt</a>. Find out how to spot each one, what their name means and how it was written.</p>
 </header>
-<nav aria-label="Jump to a god"><ul class="jump"><li><a href="#ra">Ra</a></li><li><a href="#nut">Nut</a></li><li><a href="#geb">Geb</a></li><li><a href="#osiris">Osiris</a></li><li><a href="#isis">Isis</a></li><li><a href="#set">Set</a></li><li><a href="#horus">Horus</a></li><li><a href="#thoth">Thoth</a></li><li><a href="#anubis">Anubis</a></li><li><a href="#maat">Ma'at</a></li><li><a href="#hathor">Hathor</a></li></ul></nav>
+<nav aria-label="Jump to a god"><ul class="jump"><li><a href="#ra">Ra</a></li><li><a href="#nut">Nut</a></li><li><a href="#geb">Geb</a></li><li><a href="#osiris">Osiris</a></li><li><a href="#isis">Isis</a></li><li><a href="#set">Set</a></li><li><a href="#horus">Horus</a></li><li><a href="#thoth">Thoth</a></li><li><a href="#anubis">Anubis</a></li><li><a href="#maat">Ma'at</a></li></ul></nav>
 
   <article class="god" id="ra">
     <div class="who">
@@ -210,23 +217,9 @@ footer p{margin:0 0 8px;max-width:46em}
       <div class="read"><dt>Read about Ma'at</dt><dd><ul><li><a href="../stories/five-stories/#story-5">Story 5: The Heart and the Feather</a></li></ul></dd></div>
     </dl>
   </article>
-  <article class="god" id="hathor">
-    <div class="who">
-      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#f9d4dc"/><path d="M27 30q-12-10-6-24q4 14 14 18zM53 30q12-10 6-24q-4 14-14 18z" fill="#2b2116"/><circle cx="40" cy="18" r="10" fill="#e2552d" stroke="#f0b93f" stroke-width="2.5"/><path d="M20 68V46a20 20 0 0 1 40 0v22h-9V48H29v20z" fill="#1b1b1b"/><circle cx="40" cy="49" r="16" fill="#c98b5a"/><rect x="24" y="35" width="32" height="4" rx="2" fill="#1f8a9c"/><ellipse cx="34" cy="48" rx="3" ry="2" fill="#1b1b1b"/><ellipse cx="46" cy="48" rx="3" ry="2" fill="#1b1b1b"/><path d="M29 48h-4M51 48h4" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/><path d="M34 56q6 5 12 0" fill="none" stroke="#7a2e1c" stroke-width="2" stroke-linecap="round"/></svg>
-      <div><h2>Hathor</h2><p class="say">say: HATH-or</p><p class="job">Goddess of joy, music and love</p></div>
-    </div>
-    <dl>
-      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Hathor written in hieroglyphs">𓉡</span><span>The Egyptians said <b>Hut-Heru</b>.</span></dd></div>
-      <div><dt>What the name means</dt><dd>"House of Horus".</dd></div>
-      <div><dt>How to spot Hathor</dt><dd>Cow horns holding a red sun disc. Sometimes she is shown as a cow.</dd></div>
-      <div><dt>Famous for</dt><dd>Music, dancing and parties. She also looks after mothers and children.</dd></div>
-      <div><dt>Main temple town</dt><dd>Dendera</dd></div>
-      <div class="read"><dt>Read about Hathor</dt><dd>Not in the five stories yet.</dd></div>
-    </dl>
-  </article>
 <footer>
   <p><b>For grown-ups:</b> Hieroglyphs are shown in a simple row, in one common spelling; scribes arranged them in blocks and used several spellings. Egyptian writing left out vowels, so "Usir", "Aset", "Heru" and the like are the way Egyptologists say the names today, not a record of how they sounded.</p>
-  <p>Many gods changed over 3,000 years. Isis, for example, was later often shown with Hathor's horns and sun disc. The pictures here use the clearest marker for each god.</p>
+  <p>Many gods changed over 3,000 years. Isis, for example, was later often shown with cow horns and a sun disc. The pictures here use the clearest marker for each god.</p>
 </footer>
 </main>
 </body>

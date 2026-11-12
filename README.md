@@ -2,12 +2,14 @@
 
 Stories, pictures and activities about the gods and myths of ancient Egypt, written for children aged 5 to 12.
 
+Website: https://abhiagent86.github.io/egyptian-mythology-for-kids/
+
 ## Contents
 
 | Collection | Age | What it is |
 |---|---|---|
 | [Five Stories from Ancient Egypt](stories/five-stories/) | 5–7 | An illustrated storybook introducing ten gods through five myths |
-| [Egyptian Gods and Goddesses](gods/) | 7–12 | Fact cards for eleven gods: name in hieroglyphs, meaning, how to spot them, and links to their stories |
+| [Egyptian Gods and Goddesses](gods/) | 7–12 | Fact cards for the ten storybook gods: name in hieroglyphs, meaning, how to spot them, and links to their stories |
 | [Top 5 Egyptian Myths poster](posters/top-5-egyptian-myths.png) | 5–12 | One-page poster: seven main gods and five myths at a glance |
 | [Popular Egyptian Gods & Goddesses poster](posters/popular-egyptian-gods-and-goddesses.png) | 7–12 | Original image chart. The [gods page](gods/) is the corrected version |
 
