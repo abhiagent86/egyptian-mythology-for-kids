@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Egyptian Gods and Goddesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Noto Sans Egyptian Hieroglyphs";src:url("fonts/noto-sans-egyptian-hieroglyphs.woff2") format("woff2");font-display:swap}
+:root{
+  /* Layout idea: one fact card per god on a lapis night sky; portrait and name on the left, five labelled facts on the right. Single theme by choice, matching the storybook. */
+  --lapis:#10294d;
+  --lapis-deep:#0a1b36;
+  --nile:#1f8a9c;
+  --gold:#f0b93f;
+  --papyrus:#f7edcf;
+  --papyrus-edge:#e3d19c;
+  --ink:#2b2116;
+  --carnelian:#cf4a2e;
+  --font-display:"Baloo 2","Trebuchet MS","Comic Sans MS",system-ui,sans-serif;
+  --font-body:"Nunito","Trebuchet MS",system-ui,sans-serif;
+  --font-glyph:"Noto Sans Egyptian Hieroglyphs","Segoe UI Historic","Noto Sans Symbols2",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--lapis-deep)}
+body{margin:0;background:radial-gradient(circle at 20% 0%,#1c4274 0,transparent 45%),var(--lapis);color:var(--papyrus);font-family:var(--font-body);font-size:18px;line-height:1.5}
+main{max-width:860px;margin:0 auto;padding:28px 16px 56px;display:flex;flex-direction:column;gap:20px}
+h1,h2{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+header h1{font-size:clamp(2rem,8vw,3.2rem);color:var(--gold);font-weight:800}
+header p{margin:10px 0 0;max-width:34em;font-size:1.05rem}
+.jump{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.jump a{display:block;padding:6px 14px;border:2px solid var(--gold);border-radius:999px;color:var(--gold);font-weight:800;text-decoration:none}
+.jump a:focus-visible,.jump a:hover{background:var(--gold);color:var(--lapis);outline:none}
+.god{background:var(--papyrus);color:var(--ink);border:3px solid var(--papyrus-edge);border-radius:22px;padding:16px;display:grid;grid-template-columns:210px 1fr;gap:18px;scroll-margin-top:12px}
+.who{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.who svg{width:112px;height:112px;display:block}
+.who h2{font-size:2rem;color:var(--lapis)}
+.who p{margin:0}
+.say{font-size:.85rem;font-weight:800;letter-spacing:.02em;color:var(--nile)}
+.job{font-weight:700;line-height:1.3}
+dl{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;align-content:start}
+dl>div{background:#fff7de;border-radius:12px;padding:10px 12px}
+dl>div.name{grid-column:1/-1;border-left:6px solid var(--carnelian)}
+dt{font-family:var(--font-display);font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--carnelian)}
+dd{margin:2px 0 0}
+.name dd{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px}
+.glyphs{font-family:var(--font-glyph);font-size:3.2rem;line-height:1.25;color:var(--lapis)}
+footer{font-size:.9rem;line-height:1.45;opacity:.9;border-top:1px solid #35548a;padding-top:16px}
+dl>div.read{grid-column:1/-1;border-left:6px solid var(--nile)}
+.read ul{margin:0;padding-left:1.1em}
+.read a{color:var(--lapis);font-weight:800}
+header a{color:var(--gold);font-weight:800}
+footer b{color:var(--gold)}
+footer p{margin:0 0 8px;max-width:46em}
+@media (max-width:640px){
+  .god{grid-template-columns:1fr}
+  .who{flex-direction:row;align-items:center;gap:14px}
+  .who svg{width:84px;height:84px;flex:none}
+  dl{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Egyptian Gods and Goddesses</h1>
+  <p>Meet eleven gods and goddesses of ancient Egypt. Ten of them appear in <a href="../stories/five-stories/">Five Stories from Ancient Egypt</a>. Find out how to spot each one, what their name means and how it was written.</p>
+</header>
+<nav aria-label="Jump to a god"><ul class="jump"><li><a href="#ra">Ra</a></li><li><a href="#nut">Nut</a></li><li><a href="#geb">Geb</a></li><li><a href="#osiris">Osiris</a></li><li><a href="#isis">Isis</a></li><li><a href="#set">Set</a></li><li><a href="#horus">Horus</a></li><li><a href="#thoth">Thoth</a></li><li><a href="#anubis">Anubis</a></li><li><a href="#maat">Ma'at</a></li><li><a href="#hathor">Hathor</a></li></ul></nav>
+
+  <article class="god" id="ra">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#ffd98a"/><circle cx="40" cy="17" r="12" fill="#e2552d" stroke="#f0b93f" stroke-width="3"/><path d="M22 66V44a18 18 0 0 1 36 0v22z" fill="#8a5a2b"/><path d="M30 66V48a10 10 0 0 1 20 0v18z" fill="#f4e3c1"/><circle cx="33" cy="45" r="4" fill="#fff"/><circle cx="47" cy="45" r="4" fill="#fff"/><circle cx="33" cy="45" r="2" fill="#1b1b1b"/><circle cx="47" cy="45" r="2" fill="#1b1b1b"/><path d="M35 51h10l-5 10z" fill="#f0b93f"/></svg>
+      <div><h2>Ra</h2><p class="say">say: RAH</p><p class="job">God of the sun</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Ra written in hieroglyphs">𓂋𓂝𓇳</span><span>The Egyptians said <b>Ra (also written Re)</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>"Sun". His name is simply the Egyptian word for the sun.</dd></div>
+      <div><dt>How to spot Ra</dt><dd>A falcon head with a big red sun disc on top.</dd></div>
+      <div><dt>Famous for</dt><dd>Sailing the sun across the sky in a boat every day, and bringing light to the world.</dd></div>
+      <div><dt>Main temple town</dt><dd>Heliopolis, the "city of the sun", near modern Cairo</dd></div>
+      <div class="read"><dt>Read about Ra</dt><dd><ul><li><a href="../stories/five-stories/#story-1">Story 1: Ra and the Sun Boat</a></li><li><a href="../stories/five-stories/#story-2">Story 2: The Sky, the Earth and Five Extra Days</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="nut">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#0a1b36"/><path d="M19 66V42a21 21 0 0 1 42 0v24h-9V46H28v20z" fill="#1c3f7d"/><circle cx="40" cy="46" r="16" fill="#4d78c9"/><g fill="#f0b93f"><circle cx="24" cy="34" r="2"/><circle cx="32" cy="24" r="2"/><circle cx="48" cy="24" r="2"/><circle cx="56" cy="34" r="2"/><circle cx="23" cy="52" r="1.6"/><circle cx="57" cy="52" r="1.6"/></g><ellipse cx="34" cy="45" rx="3" ry="2" fill="#0a1b36"/><ellipse cx="46" cy="45" rx="3" ry="2" fill="#0a1b36"/><path d="M34 53q6 5 12 0" fill="none" stroke="#0a1b36" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><h2>Nut</h2><p class="say">say: NOOT</p><p class="job">Goddess of the sky</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Nut written in hieroglyphs">𓏌𓏏𓇯</span><span>The Egyptians said <b>Nut</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>Nobody knows for sure. Her name ends with the sign for "sky".</dd></div>
+      <div><dt>How to spot Nut</dt><dd>A woman covered in stars, bending over the earth like a bridge.</dd></div>
+      <div><dt>Famous for</dt><dd>Being the sky itself. She is the mother of Osiris, Isis, Set and Nephthys.</dd></div>
+      <div><dt>Main temple town</dt><dd>None of her own. Look for her painted on the ceilings of tombs and temples.</dd></div>
+      <div class="read"><dt>Read about Nut</dt><dd><ul><li><a href="../stories/five-stories/#story-2">Story 2: The Sky, the Earth and Five Extra Days</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="geb">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#cfe8b0"/><circle cx="40" cy="46" r="17" fill="#b9793f"/><path d="M22 36q18-22 36 0q-18-8-36 0z" fill="#3f8f3f"/><path d="M40 12q8 10 0 20q-8-10 0-20z" fill="#5cb04c"/><path d="M26 18q10 4 8 14q-10-4-8-14zM54 18q-10 4-8 14q10-4 8-14z" fill="#4aa043"/><ellipse cx="34" cy="46" rx="3" ry="2" fill="#1b1b1b"/><ellipse cx="46" cy="46" rx="3" ry="2" fill="#1b1b1b"/><path d="M34 54q6 5 12 0" fill="none" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><h2>Geb</h2><p class="say">say: GEB</p><p class="job">God of the earth</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Geb written in hieroglyphs">𓅬𓃀𓀭</span><span>The Egyptians said <b>Geb</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>Nobody knows for sure. His name is written with a goose.</dd></div>
+      <div><dt>How to spot Geb</dt><dd>A man lying on the ground under the sky, often with green skin or a goose on his head.</dd></div>
+      <div><dt>Famous for</dt><dd>Being the earth itself. People said earthquakes were Geb laughing.</dd></div>
+      <div><dt>Main temple town</dt><dd>None of his own</dd></div>
+      <div class="read"><dt>Read about Geb</dt><dd><ul><li><a href="../stories/five-stories/#story-2">Story 2: The Sky, the Earth and Five Extra Days</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="osiris">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#f4e3c1"/><path d="M31 34q9-40 18 0z" fill="#fff" stroke="#c9b98a" stroke-width="1.5"/><path d="M29 34q-8-10-3-22q6 8 6 22zM51 34q8-10 3-22q-6 8-6 22z" fill="#f0b93f"/><circle cx="40" cy="48" r="16" fill="#6fb36a"/><rect x="37" y="62" width="6" height="12" rx="3" fill="#1b1b1b"/><ellipse cx="34" cy="47" rx="3" ry="2" fill="#1b1b1b"/><ellipse cx="46" cy="47" rx="3" ry="2" fill="#1b1b1b"/><path d="M29 47h-4M51 47h4" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/><path d="M34 55q6 4 12 0" fill="none" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><h2>Osiris</h2><p class="say">say: oh-SY-ris</p><p class="job">King of the afterlife</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Osiris written in hieroglyphs">𓊨𓁹𓀭</span><span>The Egyptians said <b>Usir</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>Nobody knows for sure! "Osiris" is how the Greeks said his name.</dd></div>
+      <div><dt>How to spot Osiris</dt><dd>Green skin, a tall white crown with two feathers, and a crook and flail in his hands.</dd></div>
+      <div><dt>Famous for</dt><dd>Being a kind king who taught people to farm. He later became king of the land of spirits.</dd></div>
+      <div><dt>Main temple town</dt><dd>Abydos</dd></div>
+      <div class="read"><dt>Read about Osiris</dt><dd><ul><li><a href="../stories/five-stories/#story-3">Story 3: Isis Finds Osiris</a></li><li><a href="../stories/five-stories/#story-5">Story 5: The Heart and the Feather</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="isis">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#bfe6ea"/><path d="M33 28V18h7V8h7v20z" fill="#f0b93f" stroke="#b98228" stroke-width="1.5"/><path d="M20 68V44a20 20 0 0 1 40 0v24h-9V46H29v22z" fill="#1b1b1b"/><circle cx="40" cy="47" r="16" fill="#c98b5a"/><rect x="24" y="33" width="32" height="4" rx="2" fill="#f0b93f"/><ellipse cx="34" cy="46" rx="3" ry="2" fill="#1b1b1b"/><ellipse cx="46" cy="46" rx="3" ry="2" fill="#1b1b1b"/><path d="M29 46h-4M51 46h4" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/><path d="M34 54q6 5 12 0" fill="none" stroke="#7a2e1c" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><h2>Isis</h2><p class="say">say: EYE-sis</p><p class="job">Goddess of magic and love</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Isis written in hieroglyphs">𓊨𓏏𓆇𓁐</span><span>The Egyptians said <b>Aset</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>"Throne". That is why she wears a throne on her head.</dd></div>
+      <div><dt>How to spot Isis</dt><dd>A little throne on her head. Sometimes she has big bird wings.</dd></div>
+      <div><dt>Famous for</dt><dd>Strong magic, and never giving up when her family needed her. She is the mother of Horus.</dd></div>
+      <div><dt>Main temple town</dt><dd>Philae, an island temple in the south of Egypt</dd></div>
+      <div class="read"><dt>Read about Isis</dt><dd><ul><li><a href="../stories/five-stories/#story-3">Story 3: Isis Finds Osiris</a></li><li><a href="../stories/five-stories/#story-4">Story 4: Horus and the Magic Eye</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="set">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#f3c9a8"/><rect x="24" y="10" width="8" height="24" rx="1.5" fill="#b5472f"/><rect x="38" y="10" width="8" height="24" rx="1.5" fill="#b5472f"/><ellipse cx="35" cy="44" rx="14" ry="15" fill="#b5472f"/><path d="M44 46q16 3 20 20" fill="none" stroke="#b5472f" stroke-width="10" stroke-linecap="round"/><circle cx="38" cy="41" r="3.5" fill="#fff"/><circle cx="39" cy="41" r="1.8" fill="#1b1b1b"/><path d="M33 35l9 3" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><h2>Set</h2><p class="say">say: SET</p><p class="job">God of storms and the desert</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Set written in hieroglyphs">𓃩</span><span>The Egyptians said <b>Setekh (or Sutekh)</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>Nobody knows for sure.</dd></div>
+      <div><dt>How to spot Set</dt><dd>A mystery animal that nobody can name: a long curved snout and tall square ears.</dd></div>
+      <div><dt>Famous for</dt><dd>Causing trouble for Osiris and Horus. But he is also strong and brave: he guards Ra's boat from the giant snake at night.</dd></div>
+      <div><dt>Main temple town</dt><dd>Ombos (Naqada)</dd></div>
+      <div class="read"><dt>Read about Set</dt><dd><ul><li><a href="../stories/five-stories/#story-3">Story 3: Isis Finds Osiris</a></li><li><a href="../stories/five-stories/#story-4">Story 4: Horus and the Magic Eye</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="horus">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#bcd6f5"/><path d="M33 28q7-30 14 0z" fill="#fff" stroke="#c9b98a" stroke-width="1.5"/><path d="M26 30h28V14h-6v10H26z" fill="#cf4a2e"/><path d="M22 68V46a18 18 0 0 1 36 0v22z" fill="#5b4a8a"/><path d="M30 68V50a10 10 0 0 1 20 0v18z" fill="#f4e3c1"/><circle cx="33" cy="47" r="4" fill="#fff"/><circle cx="47" cy="47" r="4" fill="#fff"/><circle cx="33" cy="47" r="2" fill="#1b1b1b"/><circle cx="47" cy="47" r="2" fill="#1b1b1b"/><path d="M35 53h10l-5 10z" fill="#f0b93f"/></svg>
+      <div><h2>Horus</h2><p class="say">say: HOR-us</p><p class="job">God of the sky and of kings</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Horus written in hieroglyphs">𓅃</span><span>The Egyptians said <b>Heru</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>"The far-away one" or "the one high above", like a falcon in the sky.</dd></div>
+      <div><dt>How to spot Horus</dt><dd>A falcon head wearing the red and white double crown of Egypt.</dd></div>
+      <div><dt>Famous for</dt><dd>Becoming king of Egypt after many contests with his uncle Set. His healed eye is a sign of safety.</dd></div>
+      <div><dt>Main temple town</dt><dd>Edfu, one of the best-kept temples in Egypt</dd></div>
+      <div class="read"><dt>Read about Horus</dt><dd><ul><li><a href="../stories/five-stories/#story-4">Story 4: Horus and the Magic Eye</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="thoth">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#d9d3ee"/><circle cx="32" cy="14" r="9" fill="#f7edcf"/><circle cx="36" cy="11" r="8" fill="#d9d3ee"/><path d="M24 70V48h16v22z" fill="#fff"/><circle cx="32" cy="42" r="14" fill="#fff" stroke="#c9c2df" stroke-width="1.5"/><path d="M43 40q22 2 25 26" fill="none" stroke="#1b1b1b" stroke-width="6" stroke-linecap="round"/><circle cx="35" cy="39" r="2.6" fill="#1b1b1b"/></svg>
+      <div><h2>Thoth</h2><p class="say">say: THOTH</p><p class="job">God of writing and clever ideas</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Thoth written in hieroglyphs">𓅝</span><span>The Egyptians said <b>Djehuty</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>Nobody knows for sure. "Thoth" is how the Greeks said his name.</dd></div>
+      <div><dt>How to spot Thoth</dt><dd>The head of an ibis, a bird with a long curved beak. Sometimes he is a baboon.</dd></div>
+      <div><dt>Famous for</dt><dd>Inventing writing, solving problems with clever ideas, and keeping the records of the gods.</dd></div>
+      <div><dt>Main temple town</dt><dd>Hermopolis</dd></div>
+      <div class="read"><dt>Read about Thoth</dt><dd><ul><li><a href="../stories/five-stories/#story-2">Story 2: The Sky, the Earth and Five Extra Days</a></li><li><a href="../stories/five-stories/#story-4">Story 4: Horus and the Magic Eye</a></li><li><a href="../stories/five-stories/#story-5">Story 5: The Heart and the Feather</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="anubis">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#f0d79a"/><path d="M24 34l2-24l9 18zM38 30l6-20l5 22z" fill="#1b1b1b"/><ellipse cx="36" cy="45" rx="14" ry="15" fill="#1b1b1b"/><path d="M44 47l22 5" stroke="#1b1b1b" stroke-width="11" stroke-linecap="round"/><circle cx="39" cy="42" r="3" fill="#f0b93f"/><circle cx="39.5" cy="42" r="1.4" fill="#1b1b1b"/><path d="M22 62q14 8 28 0v8H22z" fill="#f0b93f"/><path d="M22 66q14 8 28 0" fill="none" stroke="#1f8a9c" stroke-width="3"/></svg>
+      <div><h2>Anubis</h2><p class="say">say: ah-NOO-bis</p><p class="job">Guide to the afterlife</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Anubis written in hieroglyphs">𓇋𓈖𓊪𓅱𓃢</span><span>The Egyptians said <b>Anpu</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>Nobody knows for sure. "Anubis" is how the Greeks said his name.</dd></div>
+      <div><dt>How to spot Anubis</dt><dd>The head of a black jackal, a wild dog with tall pointed ears.</dd></div>
+      <div><dt>Famous for</dt><dd>Looking after mummies, guiding people to Osiris, and weighing hearts against the feather of truth.</dd></div>
+      <div><dt>Main temple town</dt><dd>Cynopolis, which means "city of the dog"</dd></div>
+      <div class="read"><dt>Read about Anubis</dt><dd><ul><li><a href="../stories/five-stories/#story-5">Story 5: The Heart and the Feather</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="maat">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#f6cfc4"/><path d="M40 32q-9-13 0-28q9 15 0 28z" fill="#fff" stroke="#1f8a9c" stroke-width="2"/><path d="M40 32V8" stroke="#1f8a9c" stroke-width="1.5"/><path d="M20 68V46a20 20 0 0 1 40 0v22h-9V48H29v20z" fill="#1b1b1b"/><circle cx="40" cy="49" r="16" fill="#c98b5a"/><rect x="24" y="35" width="32" height="4" rx="2" fill="#cf4a2e"/><ellipse cx="34" cy="48" rx="3" ry="2" fill="#1b1b1b"/><ellipse cx="46" cy="48" rx="3" ry="2" fill="#1b1b1b"/><path d="M29 48h-4M51 48h4" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/><path d="M34 56q6 5 12 0" fill="none" stroke="#7a2e1c" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><h2>Ma'at</h2><p class="say">say: mah-AHT</p><p class="job">Goddess of truth</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Ma'at written in hieroglyphs">𓌷𓂝𓏏𓁦</span><span>The Egyptians said <b>Maat</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>"Truth" and "what is right".</dd></div>
+      <div><dt>How to spot Ma'at</dt><dd>A tall ostrich feather on her head.</dd></div>
+      <div><dt>Famous for</dt><dd>Truth and fairness. Her feather is the one that hearts are weighed against.</dd></div>
+      <div><dt>Main temple town</dt><dd>A small temple at Karnak</dd></div>
+      <div class="read"><dt>Read about Ma'at</dt><dd><ul><li><a href="../stories/five-stories/#story-5">Story 5: The Heart and the Feather</a></li></ul></dd></div>
+    </dl>
+  </article>
+  <article class="god" id="hathor">
+    <div class="who">
+      <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="40" fill="#f9d4dc"/><path d="M27 30q-12-10-6-24q4 14 14 18zM53 30q12-10 6-24q-4 14-14 18z" fill="#2b2116"/><circle cx="40" cy="18" r="10" fill="#e2552d" stroke="#f0b93f" stroke-width="2.5"/><path d="M20 68V46a20 20 0 0 1 40 0v22h-9V48H29v20z" fill="#1b1b1b"/><circle cx="40" cy="49" r="16" fill="#c98b5a"/><rect x="24" y="35" width="32" height="4" rx="2" fill="#1f8a9c"/><ellipse cx="34" cy="48" rx="3" ry="2" fill="#1b1b1b"/><ellipse cx="46" cy="48" rx="3" ry="2" fill="#1b1b1b"/><path d="M29 48h-4M51 48h4" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/><path d="M34 56q6 5 12 0" fill="none" stroke="#7a2e1c" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><h2>Hathor</h2><p class="say">say: HATH-or</p><p class="job">Goddess of joy, music and love</p></div>
+    </div>
+    <dl>
+      <div class="name"><dt>Name in hieroglyphs</dt><dd><span class="glyphs" lang="egy" aria-label="Hathor written in hieroglyphs">𓉡</span><span>The Egyptians said <b>Hut-Heru</b>.</span></dd></div>
+      <div><dt>What the name means</dt><dd>"House of Horus".</dd></div>
+      <div><dt>How to spot Hathor</dt><dd>Cow horns holding a red sun disc. Sometimes she is shown as a cow.</dd></div>
+      <div><dt>Famous for</dt><dd>Music, dancing and parties. She also looks after mothers and children.</dd></div>
+      <div><dt>Main temple town</dt><dd>Dendera</dd></div>
+      <div class="read"><dt>Read about Hathor</dt><dd>Not in the five stories yet.</dd></div>
+    </dl>
+  </article>
+<footer>
+  <p><b>For grown-ups:</b> Hieroglyphs are shown in a simple row, in one common spelling; scribes arranged them in blocks and used several spellings. Egyptian writing left out vowels, so "Usir", "Aset", "Heru" and the like are the way Egyptologists say the names today, not a record of how they sounded.</p>
+  <p>Many gods changed over 3,000 years. Isis, for example, was later often shown with Hathor's horns and sun disc. The pictures here use the clearest marker for each god.</p>
+</footer>
+</main>
+</body>
+</html>
