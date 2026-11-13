@@ -13,6 +13,7 @@ Website: https://abhiagent86.github.io/egyptian-mythology-for-kids/
 | [Top 10 Places in Cairo, Giza and Alexandria](places/) | 6–12 | Nine places in Cairo and Giza and one in Alexandria, each with a picture and a wow fact |
 | [The Story of Egypt](history/) | 8–12 | A 5,000-year overview with a to-scale picture and a timeline |
 | [Write in Hieroglyphs](hieroglyphs/) | 6–12 | A name-to-hieroglyphs converter and an alphabet chart |
+| [Vegetarian Food in Egypt](food/) | 6–12 | Twelve meat-free dishes, snacks, sweets and drinks with pictures |
 | [The Big Egypt Quiz](quiz/) | 6–12 | Fifteen questions on myths, history and everyday life |
 
 ### Five Stories from Ancient Egypt
