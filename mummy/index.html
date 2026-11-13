@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make a Mummy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: a lapis night sky with papyrus cards, matching the storybook. Single theme by choice. */
+  --lapis:#10294d;--lapis-deep:#0a1b36;--nile:#1f8a9c;--gold:#f0b93f;--papyrus:#f7edcf;--papyrus-edge:#e3d19c;--ink:#2b2116;--carnelian:#cf4a2e;
+  --font-display:"Baloo 2","Trebuchet MS","Comic Sans MS",system-ui,sans-serif;--font-body:"Nunito","Trebuchet MS",system-ui,sans-serif;color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--lapis-deep)}
+body{margin:0;background:radial-gradient(circle at 20% 0%,#1c4274 0,transparent 45%),var(--lapis);color:var(--papyrus);font-family:var(--font-body);font-size:19px;line-height:1.5}
+main{max-width:860px;margin:0 auto;padding:28px 16px 56px;display:flex;flex-direction:column;gap:22px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+header h1{font-size:clamp(2.1rem,8.5vw,3.3rem);color:var(--gold);font-weight:800}
+header p{margin:10px 0 0;max-width:32em}
+img,svg{max-width:100%}
+.card{background:var(--papyrus);color:var(--ink);border:3px solid var(--papyrus-edge);border-radius:22px}
+footer{font-size:.9rem;line-height:1.45;opacity:.9;border-top:1px solid #35548a;padding-top:16px}
+footer b{color:var(--gold)}
+footer p{margin:0 0 8px;max-width:46em}
+.card{padding:16px}
+.card h2{font-size:1.5rem;color:var(--lapis);margin-bottom:8px}
+.card p{margin:0 0 10px;max-width:38em}
+.pick{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pick span{font-family:var(--font-display);font-weight:800;color:var(--gold)}
+.pick button,.again{font:800 1rem var(--font-body);padding:8px 16px;border-radius:999px;border:2px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer}
+.pick button[aria-pressed="true"]{background:var(--gold);color:var(--lapis)}
+.pick button:focus-visible,.again:focus-visible,.opt:focus-visible{outline:3px solid var(--nile);outline-offset:2px}
+.game{overflow:hidden;padding:0}
+#stage{display:block;width:100%;height:auto;border-bottom:3px solid var(--papyrus-edge)}
+.inner{padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px}
+.dots{display:flex;gap:8px;list-style:none;margin:0;padding:0}
+.dots li{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;border:3px solid var(--papyrus-edge);color:#a89a70;background:#fff7de}
+.dots li.on{background:var(--nile);border-color:var(--nile);color:#fff}
+#msg{background:#fff7de;border-left:6px solid var(--nile);border-radius:10px;padding:10px 12px;min-height:4.2em}
+#msg b{font-family:var(--font-display);color:var(--carnelian)}
+#msg.no{border-left-color:var(--carnelian)}
+#msg.win{border-left-color:var(--gold);background:#fff1c4}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.opt{position:relative;display:flex;align-items:center;gap:10px;text-align:left;font:800 1.02rem var(--font-body);line-height:1.2;padding:10px;border-radius:14px;border:3px solid var(--papyrus-edge);background:#fff7de;color:var(--ink);cursor:pointer}
+.opt svg{width:44px;height:44px;flex:none}
+.opt:hover:not(:disabled){border-color:var(--nile)}
+.opt:disabled{cursor:default;background:#cfeccc;border-color:#2f8f46}
+.opt[data-n]::after{content:attr(data-n);position:absolute;top:-10px;right:-8px;width:28px;height:28px;border-radius:50%;background:#2f8f46;color:#fff;display:grid;place-items:center;font-family:var(--font-display)}
+.opt.shake{animation:shake .35s;border-color:var(--carnelian)}
+@keyframes shake{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+@media (prefers-reduced-motion:reduce){.opt.shake{animation:none}}
+.again{align-self:flex-start;border-color:var(--lapis);color:var(--lapis)}
+details{background:#fff7de;border-radius:12px;padding:10px 14px}
+summary{font-weight:800;cursor:pointer;color:var(--lapis)}
+details ol{margin:10px 0 0;padding-left:1.3em}
+details li{margin-bottom:8px}
+.facts{margin:0;padding-left:1.2em}
+.facts li{margin-bottom:6px}
+.card a{color:var(--lapis);font-weight:800}
+.site-nav{position:sticky;top:0;z-index:10;background:#0a1b36;border-bottom:2px solid #f0b93f}
+.site-nav ul{max-width:860px;margin:0 auto;padding:8px 12px;display:flex;gap:4px;list-style:none;overflow-x:auto;scrollbar-width:none}
+.site-nav ul::-webkit-scrollbar{display:none}
+.site-nav a{display:block;padding:6px 10px;border-radius:999px;color:#f7edcf;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.2;text-decoration:none;white-space:nowrap}
+.site-nav a:hover,.site-nav a:focus-visible{background:#16335d;outline:2px solid #f0b93f}
+.site-nav a[aria-current="page"]{background:#f0b93f;color:#10294d}
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Site"><ul><li><a href="../">Home</a></li><li><a href="../stories/five-stories/">Stories</a></li><li><a href="../gods/">Gods</a></li><li><a href="../places/">Places</a></li><li><a href="../history/">History</a></li><li><a href="../hieroglyphs/">Hieroglyphs</a></li><li><a href="../food/">Food</a></li><li><a href="../mummy/" aria-current="page">Mummy</a></li><li><a href="../quiz/">Quiz</a></li></ul></nav>
+<main>
+<header>
+  <h1>Make a Mummy</h1>
+  <p>The Egyptians believed a person needed their body in the next life. So they learned how to make a body last for thousands of years. Can you put the six steps in the right order?</p>
+</header>
+<div class="pick"><span>Who will you mummify?</span><button type="button" data-type="person" aria-pressed="true">A king</button><button type="button" data-type="cat" aria-pressed="false">A cat</button></div>
+<section class="card game">
+  <svg id="stage" viewBox="0 0 320 200" role="img" aria-label="The mummy workshop. The picture changes after each step."><defs><clipPath id="cpP"><path d="M82 108 Q120 92 170 100 L250 108 Q262 96 270 98 L270 128 L84 128 Z"/></clipPath><clipPath id="cpC"><path d="M112 128 Q104 98 150 96 L214 98 Q244 100 246 128 Z"/></clipPath><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e2a8"/><stop offset="1" stop-color="#ecd08a"/></linearGradient></defs><rect width="320" height="200" fill="url(#wall)"/><rect y="160" width="320" height="40" fill="#d2ad5e"/><rect x="0" y="0" width="14" height="160" fill="#e3c877"/><rect x="306" y="0" width="14" height="160" fill="#e3c877"/><path d="M0 22 h14 M0 34 h14 M306 22 h14 M306 34 h14" stroke="#1f9aa8" stroke-width="5"/><path d="M24 66 H132" stroke="#8a5a2b" stroke-width="5" stroke-linecap="round"/><g data-t="all" data-s="2-6"><path d="M30 64 V46 Q38 38 46 46 V64 Z" fill="#f4ead0" stroke="#b9a988" stroke-width="1.5"/><circle cx="38" cy="38" r="7" fill="#c98b5a" stroke="#6a4a2a" stroke-width="1.2"/><path d="M33 54 h10" stroke="#1f9aa8" stroke-width="2"/><path d="M54 64 V46 Q62 38 70 46 V64 Z" fill="#f4ead0" stroke="#b9a988" stroke-width="1.5"/><circle cx="62" cy="38" r="7" fill="#3a3a3a" stroke="#6a4a2a" stroke-width="1.2"/><path d="M57 54 h10" stroke="#1f9aa8" stroke-width="2"/><path d="M78 64 V46 Q86 38 94 46 V64 Z" fill="#f4ead0" stroke="#b9a988" stroke-width="1.5"/><circle cx="86" cy="38" r="7" fill="#8a5a2b" stroke="#6a4a2a" stroke-width="1.2"/><path d="M81 54 h10" stroke="#1f9aa8" stroke-width="2"/><path d="M102 64 V46 Q110 38 118 46 V64 Z" fill="#f4ead0" stroke="#b9a988" stroke-width="1.5"/><circle cx="110" cy="38" r="7" fill="#9aa0a6" stroke="#6a4a2a" stroke-width="1.2"/><path d="M105 54 h10" stroke="#1f9aa8" stroke-width="2"/></g><g data-t="all" data-s="4-4"><path d="M262 60 Q252 46 262 34 H278 Q288 46 278 60 Z" fill="#b5653a" stroke="#6a3a1a" stroke-width="1.5"/><rect x="262" y="28" width="16" height="7" fill="#8a4a24"/><path d="M270 60 q-2 10 -8 16" fill="none" stroke="#e9b23c" stroke-width="3" stroke-linecap="round"/></g><rect x="34" y="128" width="252" height="10" rx="3" fill="#8a5a2b"/><rect x="50" y="138" width="10" height="26" fill="#6a4a2a"/><rect x="260" y="138" width="10" height="26" fill="#6a4a2a"/><path d="M40 133 h240" stroke="#a9744a" stroke-width="2"/><g data-t="person" data-s="6-6"><path d="M50 128 V112 Q50 92 74 92 Q130 80 176 90 L256 98 Q282 88 284 104 V128 Z" fill="#e9b23c" stroke="#8a5a14" stroke-width="2"/><path d="M96 92 v36 M126 88 v40 M156 88 v40 M186 92 v36 M216 95 v33 M246 97 v31" stroke="#1d4590" stroke-width="3"/></g><g data-t="cat" data-s="6-6"><path d="M76 128 V104 L82 68 L98 84 L108 84 L122 66 L128 92 L216 88 Q256 92 258 128 Z" fill="#b5804a" stroke="#6a4a2a" stroke-width="2"/><path d="M140 92 v36 M170 90 v38 M200 90 v38 M230 96 v32" stroke="#e9b23c" stroke-width="3"/></g><g data-t="person" data-s="0-3"><path d="M82 108 Q120 92 170 100 L250 108 Q262 96 270 98 L270 128 L84 128 Z" fill="#c98b5a" stroke="none" stroke-width="1.5"/><circle cx="70" cy="113" r="13" fill="#c98b5a" stroke="none" stroke-width="1.5"/><path d="M150 99 L198 103 V128 H150 Z" fill="#fbf6e6"/><path d="M58 108 a13 13 0 0 1 20 -6" fill="none" stroke="#1b1b1b" stroke-width="5" stroke-linecap="round"/><path d="M66 114 h7" stroke="#1b1b1b" stroke-width="1.8" stroke-linecap="round"/></g><g data-t="cat" data-s="0-3"><path d="M240 122 Q276 124 272 96" fill="none" stroke="#c9a36a" stroke-width="8" stroke-linecap="round"/><path d="M112 128 Q104 98 150 96 L214 98 Q244 100 246 128 Z" fill="#c9a36a" stroke="none" stroke-width="1.5"/><path d="M84 96 L88 78 L100 92 Z M106 90 L118 76 L120 96 Z" fill="#c9a36a" stroke="none" stroke-width="1.5"/><circle cx="102" cy="108" r="17" fill="#c9a36a" stroke="none" stroke-width="1.5"/><path d="M140 100 l4 12 M160 98 l4 14 M180 98 l4 14 M200 99 l4 13" stroke="#a37a44" stroke-width="3" stroke-linecap="round"/><path d="M94 106 h6 M106 106 h6" stroke="#1b1b1b" stroke-width="1.8" stroke-linecap="round"/><path d="M100 113 l2 2 l2 -2" fill="none" stroke="#6a4a2a" stroke-width="1.5"/></g><g data-t="all" data-s="1-1"><path d="M236 30 l34 12 l-8 24 q-18 4 -30 -10 z" fill="#b5653a" stroke="#6a3a1a" stroke-width="1.5"/><path d="M226 62 q-5 8 0 12 q5 -4 0 -12 z" fill="#4aa8d8"/><path d="M206 74 q-5 8 0 12 q5 -4 0 -12 z" fill="#4aa8d8"/><path d="M180 66 q-5 8 0 12 q5 -4 0 -12 z" fill="#4aa8d8"/><path d="M150 78 q-5 8 0 12 q5 -4 0 -12 z" fill="#4aa8d8"/><path d="M120 70 q-5 8 0 12 q5 -4 0 -12 z" fill="#4aa8d8"/><path d="M96 84 q-5 8 0 12 q5 -4 0 -12 z" fill="#4aa8d8"/><path d="M250 84 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 z" fill="#fff"/><path d="M140 56 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 z" fill="#fff"/><path d="M60 80 l2 5 l5 2 l-5 2 l-2 5 l-2 -5 l-5 -2 l5 -2 z" fill="#fff"/></g><g data-t="person" data-s="3-3"><path d="M52 128 Q70 84 124 88 Q180 76 234 92 Q280 90 286 128 Z" fill="#fbfaf2" stroke="#d9d4c0" stroke-width="1.5"/><circle cx="90" cy="110" r="1.6" fill="#cfc9b4"/><circle cx="120" cy="100" r="1.6" fill="#cfc9b4"/><circle cx="150" cy="112" r="1.6" fill="#cfc9b4"/><circle cx="180" cy="96" r="1.6" fill="#cfc9b4"/><circle cx="210" cy="110" r="1.6" fill="#cfc9b4"/><circle cx="240" cy="104" r="1.6" fill="#cfc9b4"/><circle cx="262" cy="116" r="1.6" fill="#cfc9b4"/><circle cx="104" cy="120" r="1.6" fill="#cfc9b4"/><circle cx="196" cy="120" r="1.6" fill="#cfc9b4"/></g><g data-t="cat" data-s="3-3"><path d="M70 128 Q84 70 130 84 Q190 72 236 90 Q276 92 282 128 Z" fill="#fbfaf2" stroke="#d9d4c0" stroke-width="1.5"/><circle cx="100" cy="106" r="1.6" fill="#cfc9b4"/><circle cx="130" cy="98" r="1.6" fill="#cfc9b4"/><circle cx="160" cy="112" r="1.6" fill="#cfc9b4"/><circle cx="190" cy="96" r="1.6" fill="#cfc9b4"/><circle cx="220" cy="110" r="1.6" fill="#cfc9b4"/><circle cx="250" cy="116" r="1.6" fill="#cfc9b4"/><circle cx="116" cy="120" r="1.6" fill="#cfc9b4"/><circle cx="206" cy="120" r="1.6" fill="#cfc9b4"/></g><g data-t="person" data-s="4-4"><path d="M82 108 Q120 92 170 100 L250 108 Q262 96 270 98 L270 128 L84 128 Z" fill="#9a6234" stroke="none" stroke-width="1.5"/><circle cx="70" cy="113" r="13" fill="#9a6234" stroke="none" stroke-width="1.5"/><path d="M100 104 q30 -8 60 -2 M190 106 l50 5" fill="none" stroke="#e2b06a" stroke-width="3" stroke-linecap="round"/><path d="M66 114 h7" stroke="#1b1b1b" stroke-width="1.8" stroke-linecap="round"/></g><g data-t="cat" data-s="4-4"><path d="M240 122 Q276 124 272 96" fill="none" stroke="#9a7238" stroke-width="8" stroke-linecap="round"/><path d="M112 128 Q104 98 150 96 L214 98 Q244 100 246 128 Z" fill="#9a7238" stroke="none" stroke-width="1.5"/><path d="M84 96 L88 78 L100 92 Z M106 90 L118 76 L120 96 Z" fill="#9a7238" stroke="none" stroke-width="1.5"/><circle cx="102" cy="108" r="17" fill="#9a7238" stroke="none" stroke-width="1.5"/><path d="M136 102 q30 -4 70 0" fill="none" stroke="#e2c06a" stroke-width="3" stroke-linecap="round"/><path d="M94 106 h6 M106 106 h6" stroke="#1b1b1b" stroke-width="1.8" stroke-linecap="round"/></g><g data-t="person" data-s="5-6"><path d="M82 108 Q120 92 170 100 L250 108 Q262 96 270 98 L270 128 L84 128 Z" fill="#efe6cf" stroke="#b9a988" stroke-width="1.5"/><circle cx="70" cy="113" r="13" fill="#efe6cf" stroke="#b9a988" stroke-width="1.5"/><g clip-path="url(#cpP)"><path d="M80 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M94 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M108 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M122 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M136 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M150 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M164 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M178 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M192 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M206 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M220 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M234 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M248 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M262 90 l14 40" stroke="#c9b98a" stroke-width="2"/><path d="M276 90 l14 40" stroke="#c9b98a" stroke-width="2"/></g><path d="M58 108 q12 6 24 0 M58 116 q12 6 24 0" fill="none" stroke="#c9b98a" stroke-width="2"/></g><g data-t="cat" data-s="5-6"><path d="M112 128 Q104 98 150 96 L214 98 Q244 100 246 128 Z" fill="#efe6cf" stroke="#b9a988" stroke-width="1.5"/><path d="M84 96 L88 78 L100 92 Z M106 90 L118 76 L120 96 Z" fill="#efe6cf" stroke="#b9a988" stroke-width="1.5"/><circle cx="102" cy="108" r="17" fill="#efe6cf" stroke="#b9a988" stroke-width="1.5"/><g clip-path="url(#cpC)"><path d="M132 96 l12 16 l-12 16 l-12 -16 z" fill="none" stroke="#b98228" stroke-width="1.6"/><path d="M154 96 l12 16 l-12 16 l-12 -16 z" fill="none" stroke="#b98228" stroke-width="1.6"/><path d="M176 96 l12 16 l-12 16 l-12 -16 z" fill="none" stroke="#b98228" stroke-width="1.6"/><path d="M198 96 l12 16 l-12 16 l-12 -16 z" fill="none" stroke="#b98228" stroke-width="1.6"/><path d="M220 96 l12 16 l-12 16 l-12 -16 z" fill="none" stroke="#b98228" stroke-width="1.6"/></g></g><g data-t="person" data-s="5-6"><ellipse cx="128" cy="110" rx="9" ry="6" fill="#1f9aa8" stroke="#8a5a14" stroke-width="1.5"/><path d="M128 104 v12 M120 108 h-6 M136 108 h6" stroke="#8a5a14" stroke-width="1.5"/></g><g data-t="person" data-s="6-6"><path d="M54 122 Q50 96 70 96 Q90 96 86 122 Z" fill="#e9b23c" stroke="#8a5a14" stroke-width="1.5"/><path d="M56 104 h28 M55 110 h6 M79 110 h6 M55 116 h6 M79 116 h6" stroke="#1d4590" stroke-width="2.5"/><circle cx="70" cy="112" r="8" fill="#f6dba0"/><path d="M65 111 h4 M72 111 h4" stroke="#1b1b1b" stroke-width="1.6" stroke-linecap="round"/><path d="M67 116 q3 2 6 0" fill="none" stroke="#8f2f1c" stroke-width="1.3"/><path d="M88 106 q10 8 2 20" fill="none" stroke="#cf4a2e" stroke-width="4"/><path d="M93 106 q10 8 2 20" fill="none" stroke="#1f9aa8" stroke-width="4"/></g><g data-t="cat" data-s="6-6"><path d="M95 104 q3 -3 6 0 M105 104 q3 -3 6 0" fill="none" stroke="#1b1b1b" stroke-width="2" stroke-linecap="round"/><path d="M100 111 l3 3 l3 -3 z" fill="#cf4a2e"/><path d="M90 114 h-8 M90 117 h-8 M116 114 h8 M116 117 h8" stroke="#6a4a2a" stroke-width="1.2"/><path d="M90 122 q13 8 26 0" fill="none" stroke="#e9b23c" stroke-width="4"/></g></svg>
+  <div class="inner">
+    <ol class="dots" aria-label="Steps finished"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol>
+    <p id="msg" aria-live="polite"><b>What comes first?</b> A king has died. Help the priests turn him into a mummy. Tap the six steps in the right order.</p>
+    <div class="opts" id="opts"><button type="button" class="opt" data-i="4"><svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="18" cy="26" rx="12" ry="14" fill="#efe6cf" stroke="#8a7a58" stroke-width="2"/><ellipse cx="18" cy="26" rx="5" ry="6" fill="none" stroke="#8a7a58" stroke-width="1.5"/><path d="M28 36 Q38 40 44 30" fill="none" stroke="#efe6cf" stroke-width="7" stroke-linecap="round"/><path d="M28 36 Q38 40 44 30" fill="none" stroke="#8a7a58" stroke-width="1.2" stroke-dasharray="3 3"/></svg><span>Wrap in linen</span></button><button type="button" class="opt" data-i="1"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 42 V22 Q12 16 18 22 V42 Z" fill="#f4ead0" stroke="#8a7a58" stroke-width="2"/><circle cx="12" cy="14" r="5" fill="#c98b5a" stroke="#6a4a2a" stroke-width="1.5"/><path d="M30 42 V22 Q36 16 42 22 V42 Z" fill="#f4ead0" stroke="#8a7a58" stroke-width="2"/><circle cx="36" cy="14" r="5" fill="#3a3a3a" stroke="#6a4a2a" stroke-width="1.5"/></svg><span>Take out the insides</span></button><button type="button" class="opt" data-i="5"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 42 Q4 8 24 8 Q44 8 40 42 Z" fill="#e9b23c" stroke="#8a5a14" stroke-width="2"/><path d="M9 20 h30 M8 28 h7 M33 28 h7 M9 36 h6 M33 36 h6" stroke="#1d4590" stroke-width="3"/><ellipse cx="24" cy="28" rx="9" ry="11" fill="#f6dba0"/><path d="M19 26 h4 M26 26 h4" stroke="#1b1b1b" stroke-width="1.8" stroke-linecap="round"/><path d="M21 33 q3 2 6 0" fill="none" stroke="#8f2f1c" stroke-width="1.5"/></svg><span>Add a mask and a coffin</span></button><button type="button" class="opt" data-i="0"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 20 Q8 10 18 8 H30 Q40 10 36 20 L32 40 H16 Z" fill="#b5653a" stroke="#6a3a1a" stroke-width="2"/><path d="M14 22 H34" stroke="#4aa8d8" stroke-width="5"/><path d="M40 26 q-4 7 0 10 q4 -3 0 -10 z" fill="#4aa8d8"/></svg><span>Wash the body</span></button><button type="button" class="opt" data-i="3"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 42 Q8 28 16 18 H32 Q40 28 32 42 Z" fill="#b5653a" stroke="#6a3a1a" stroke-width="2"/><rect x="17" y="10" width="14" height="8" fill="#8a4a24"/><path d="M24 22 q-5 8 0 13 q5 -5 0 -13 z" fill="#e9b23c"/></svg><span>Rub with oils</span></button><button type="button" class="opt" data-i="2"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 40 Q14 12 24 14 Q34 12 44 40 Z" fill="#fbfaf2" stroke="#b9b29a" stroke-width="2"/><circle cx="18" cy="30" r="1.6" fill="#b9b29a"/><circle cx="28" cy="26" r="1.6" fill="#b9b29a"/><circle cx="24" cy="34" r="1.6" fill="#b9b29a"/><circle cx="34" cy="34" r="1.6" fill="#b9b29a"/></svg><span>Cover with salt</span></button></div>
+    <button type="button" class="again" id="again">Start again</button>
+  </div>
+</section>
+<section class="card">
+  <h2>Stuck? Here are all six steps</h2>
+  <details><summary>Show the steps in order</summary><ol><li><b>Wash the body.</b> The priests wash the body with water from the river Nile and sweet-smelling palm wine.</li><li><b>Take out the insides.</b> The soft parts inside are taken out so the body will not rot. The lungs, liver and stomach go into four special jars. The heart stays in, because Egyptians believed you think with your heart. And the brain? It was pulled out through the nose with a hook!</li><li><b>Cover with salt.</b> The body is covered with a special salt called natron for 40 days. The salt soaks up all the water, so the body dries out completely.</li><li><b>Rub with oils.</b> The dry body is rubbed with oils to make the skin soft again. It is filled with linen or sawdust so it gets its shape back.</li><li><b>Wrap in linen.</b> The body is wrapped in hundreds of metres of linen strips. Lucky charms called amulets are tucked between the layers to keep the person safe.</li><li><b>Add a mask and a coffin.</b> A mask goes over the face, so the spirit can find its own body again. Then the mummy is laid in a painted coffin and carried to its tomb.</li></ol></details>
+</section>
+<section class="card">
+  <h2>Four mummy facts</h2>
+  <ul class="facts">
+    <li>Making a mummy took about 70 days from start to finish.</li>
+    <li><a href="../gods/#anubis">Anubis</a>, the god with a jackal head, looked after mummies. The chief priest sometimes wore an Anubis mask.</li>
+    <li>The Egyptians made millions of animal mummies: cats, birds called ibises, falcons, and even crocodiles.</li>
+    <li>You can see the real mummies of kings and queens in the <a href="../places/">Museum of Egyptian Civilization</a> in Cairo.</li>
+  </ul>
+</section>
+<footer><p><b>For grown-ups:</b> This is a simplified version of the most careful, expensive method, as described for royal burials. Cheaper methods skipped steps, and practice changed over 3,000 years. The game mentions that the brain was removed through the nose; nothing is shown.</p></footer>
+</main>
+<script>
+(function(){
+  var STEPS=[{"label": "Wash the body", "person": "The priests wash the body with water from the river Nile and sweet-smelling palm wine.", "cat": "The priests wash the cat gently with water from the river Nile.", "hint": "Start by getting the body clean."}, {"label": "Take out the insides", "person": "The soft parts inside are taken out so the body will not rot. The lungs, liver and stomach go into four special jars. The heart stays in, because Egyptians believed you think with your heart. And the brain? It was pulled out through the nose with a hook!", "cat": "For a person, the soft parts inside were taken out and kept in four jars. For animals this step was often simpler: the insides came out through a small cut, or were just left in.", "hint": "The soft parts inside would rot. They must come out next."}, {"label": "Cover with salt", "person": "The body is covered with a special salt called natron for 40 days. The salt soaks up all the water, so the body dries out completely.", "cat": "The cat is covered with a special salt called natron. The salt soaks up all the water until the cat is completely dry.", "hint": "Now the body must dry out. What soaks up water?"}, {"label": "Rub with oils", "person": "The dry body is rubbed with oils to make the skin soft again. It is filled with linen or sawdust so it gets its shape back.", "cat": "The dry cat is rubbed with oils and sticky, sweet-smelling tree sap to protect it.", "hint": "The body is dry and stiff. Make the skin soft again."}, {"label": "Wrap in linen", "person": "The body is wrapped in hundreds of metres of linen strips. Lucky charms called amulets are tucked between the layers to keep the person safe.", "cat": "The cat is wrapped in linen strips. They are often woven into beautiful diamond patterns.", "hint": "Time to cover the body up, strip by strip."}, {"label": "Add a mask and a coffin", "person": "A mask goes over the face, so the spirit can find its own body again. Then the mummy is laid in a painted coffin and carried to its tomb.", "cat": "A painted cat face goes on top. Then the mummy is put in a little cat-shaped coffin and given to the cat goddess Bastet.", "hint": "Last of all, the mummy needs a face and a safe box."}];
+  var stage=0, type='person';
+  var svg=document.getElementById('stage'), msg=document.getElementById('msg'), opts=document.getElementById('opts'), dots=document.querySelectorAll('.dots li');
+  function clear(el){ while(el.firstChild) el.removeChild(el.firstChild); }
+  function say(cls,head,text){ msg.className=cls; clear(msg); var b=document.createElement('b'); b.textContent=head+' '; msg.appendChild(b); msg.appendChild(document.createTextNode(text)); }
+  function paint(){
+    svg.querySelectorAll('[data-s]').forEach(function(g){
+      var r=g.getAttribute('data-s').split('-'), t=g.getAttribute('data-t');
+      var show=stage>=+r[0] && stage<=+r[1] && (t==='all' || t===type);
+      g.style.display=show?'':'none';
+    });
+    dots.forEach(function(d,i){ d.classList.toggle('on', i<stage); });
+  }
+  function shuffle(){
+    var list=Array.prototype.slice.call(opts.children);
+    for(var i=list.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var x=list[i]; list[i]=list[j]; list[j]=x; }
+    if(list[0].getAttribute('data-i')==='0'){ list.push(list.shift()); }
+    list.forEach(function(b){ opts.appendChild(b); });
+  }
+  function reset(mix){
+    stage=0;
+    opts.querySelectorAll('.opt').forEach(function(b){ b.disabled=false; b.removeAttribute('data-n'); b.classList.remove('shake'); });
+    if(mix) shuffle();
+    say('', 'What comes first?', type==='person' ? 'A king has died. Help the priests turn him into a mummy. Tap the six steps in the right order.' : 'This cat lived in a temple. Help the priests turn it into a mummy. Tap the six steps in the right order.');
+    paint();
+  }
+  opts.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b || b.disabled) return;
+    var i=+b.getAttribute('data-i');
+    if(i===stage){
+      b.disabled=true; b.setAttribute('data-n', i+1); stage++;
+      paint();
+      if(stage===6) say('win','You made a mummy!', STEPS[i][type]+' The whole job took about 70 days.');
+      else say('', 'Step '+(i+1)+': '+STEPS[i].label+'.', STEPS[i][type]);
+    } else {
+      b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake');
+      say('no','Not yet!', STEPS[stage].hint);
+    }
+  });
+  document.querySelectorAll('.pick button').forEach(function(p){
+    p.addEventListener('click',function(){
+      type=p.getAttribute('data-type');
+      document.querySelectorAll('.pick button').forEach(function(q){ q.setAttribute('aria-pressed', q===p ? 'true':'false'); });
+      reset(true);
+    });
+  });
+  document.getElementById('again').addEventListener('click',function(){ reset(true); });
+  reset(false);
+})();
+</script>
+</body>
+</html>
