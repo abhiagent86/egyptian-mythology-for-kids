@@ -12,7 +12,8 @@ Website: https://abhiagent86.github.io/egyptian-mythology-for-kids/
 | [Egyptian Gods and Goddesses](gods/) | 7–12 | Fact cards for the ten storybook gods: name in hieroglyphs, meaning, how to spot them, and links to their stories |
 | [Top 10 Places in Cairo and Giza](places/) | 6–12 | Ten places to visit, each with a picture and a wow fact |
 | [The Story of Egypt](history/) | 8–12 | A 5,000-year overview with a to-scale picture and a timeline |
-| [Egyptian Gods Quiz](quiz/) | 6–12 | Twelve multiple-choice questions on the gods and stories |
+| [Write in Hieroglyphs](hieroglyphs/) | 6–12 | A name-to-hieroglyphs converter and an alphabet chart |
+| [The Big Egypt Quiz](quiz/) | 6–12 | Fifteen questions on myths, history and everyday life |
 
 ### Five Stories from Ancient Egypt
 
