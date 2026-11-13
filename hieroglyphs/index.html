@@ -34,13 +34,17 @@ label{display:block;font-family:var(--font-display);font-weight:800;color:var(--
 #name:focus-visible{outline:3px solid var(--nile);border-color:var(--nile)}
 .cartouche{margin:16px 0 6px;display:inline-flex;flex-wrap:wrap;gap:6px 10px;align-items:flex-end;min-height:96px;max-width:100%;padding:12px 22px;border:5px solid var(--gold);border-radius:44px;border-right-width:14px;background:#fff7de}
 .cartouche .pair{display:flex;flex-direction:column;align-items:center;gap:2px}
-.cartouche .g{font-size:3rem;line-height:1.15;color:var(--lapis)}
+.cartouche .g{font-size:2.8rem;line-height:1.6;color:var(--lapis)}
 .cartouche .l{font:800 .8rem var(--font-body);color:var(--carnelian)}
 .cartouche .gap{width:14px}
 .hint{font-size:.95rem}
 .chart{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
 .chart li{background:#fff7de;border-radius:12px;padding:8px;display:flex;flex-direction:column;align-items:center;text-align:center;font-size:.85rem;line-height:1.2}
-.chart .gl{font-size:2.4rem;line-height:1.2;color:var(--lapis)}
+.chart .gl{font-size:2.2rem;line-height:1.7;height:1.7em;display:block;color:var(--lapis)}
+.tick{margin:12px 0 0;display:flex;gap:10px;align-items:center}
+.tick input{width:24px;height:24px;flex:none;accent-color:var(--nile)}
+.tick label{font:700 1rem var(--font-body);text-transform:none;letter-spacing:0;color:var(--ink)}
+.sub{font-size:1.25rem;color:var(--lapis);margin:18px 0 6px}
 .chart b{font-family:var(--font-display);font-size:1.3rem;color:var(--carnelian)}
 .facts{margin:0;padding-left:1.2em}
 .facts li{margin-bottom:6px}
@@ -63,6 +67,7 @@ label{display:block;font-family:var(--font-display);font-weight:800;color:var(--
   <h2>Your name in hieroglyphs</h2>
   <label for="name">Type a name</label>
   <input id="name" type="text" value="Cleopatra" maxlength="24" autocomplete="off" autocapitalize="words" spellcheck="false">
+  <p class="tick"><input id="join" type="checkbox"> <label for="join">Use one sign for the sounds SH, CH, TH, KH and PH</label></p>
   <div><div class="cartouche" id="out" aria-live="polite"></div></div>
   <p class="hint">The oval frame is called a <b>cartouche</b>. Egyptians drew one around the name of a king or queen to keep it safe.</p>
 </section>
@@ -70,6 +75,9 @@ label{display:block;font-family:var(--font-display);font-weight:800;color:var(--
   <h2>The hieroglyph alphabet</h2>
   <p>Each picture stands for a sound. Some sounds share a picture, like C and K, or U and W.</p>
   <ol class="chart"><li><span class="gl" lang="egy">𓄿</span><b>A</b><span>vulture</span></li><li><span class="gl" lang="egy">𓃀</span><b>B</b><span>foot</span></li><li><span class="gl" lang="egy">𓎡</span><b>C</b><span>basket</span></li><li><span class="gl" lang="egy">𓂧</span><b>D</b><span>hand</span></li><li><span class="gl" lang="egy">𓇋</span><b>E</b><span>reed</span></li><li><span class="gl" lang="egy">𓆑</span><b>F</b><span>horned snake</span></li><li><span class="gl" lang="egy">𓎼</span><b>G</b><span>jar stand</span></li><li><span class="gl" lang="egy">𓉔</span><b>H</b><span>shelter</span></li><li><span class="gl" lang="egy">𓇋</span><b>I</b><span>reed</span></li><li><span class="gl" lang="egy">𓆓</span><b>J</b><span>cobra</span></li><li><span class="gl" lang="egy">𓎡</span><b>K</b><span>basket</span></li><li><span class="gl" lang="egy">𓃭</span><b>L</b><span>lion</span></li><li><span class="gl" lang="egy">𓅓</span><b>M</b><span>owl</span></li><li><span class="gl" lang="egy">𓈖</span><b>N</b><span>water</span></li><li><span class="gl" lang="egy">𓍯</span><b>O</b><span>rope loop</span></li><li><span class="gl" lang="egy">𓊪</span><b>P</b><span>stool</span></li><li><span class="gl" lang="egy">𓈎</span><b>Q</b><span>hill</span></li><li><span class="gl" lang="egy">𓂋</span><b>R</b><span>mouth</span></li><li><span class="gl" lang="egy">𓋴</span><b>S</b><span>folded cloth</span></li><li><span class="gl" lang="egy">𓏏</span><b>T</b><span>loaf of bread</span></li><li><span class="gl" lang="egy">𓅱</span><b>U</b><span>quail chick</span></li><li><span class="gl" lang="egy">𓆑</span><b>V</b><span>horned snake</span></li><li><span class="gl" lang="egy">𓅱</span><b>W</b><span>quail chick</span></li><li><span class="gl" lang="egy">𓎡𓋴</span><b>X</b><span>basket and cloth</span></li><li><span class="gl" lang="egy">𓇋𓇋</span><b>Y</b><span>two reeds</span></li><li><span class="gl" lang="egy">𓊃</span><b>Z</b><span>door bolt</span></li></ol>
+  <h3 class="sub">Special sounds</h3>
+  <p>The Egyptians had a single sign for some sounds that English writes with two letters. Tick the box above to use them.</p>
+  <ol class="chart"><li><span class="gl" lang="egy">𓈙</span><b>SH</b><span>pool</span></li><li><span class="gl" lang="egy">𓍿</span><b>CH</b><span>rope</span></li><li><span class="gl" lang="egy">𓍿</span><b>TH</b><span>rope</span></li><li><span class="gl" lang="egy">𓐍</span><b>KH</b><span>round sieve</span></li><li><span class="gl" lang="egy">𓆑</span><b>PH</b><span>horned snake</span></li></ol>
 </section>
 <section class="card">
   <h2>Five facts about hieroglyphs</h2>
@@ -81,19 +89,19 @@ label{display:block;font-family:var(--font-display);font-weight:800;color:var(--
     <li>For 1,400 years nobody could read hieroglyphs. Then the Rosetta Stone helped Champollion work them out in 1822.</li>
   </ul>
 </section>
-<footer><p><b>For grown-ups:</b> The converter matches English letters to the closest Egyptian one-sound signs. It is the usual playful "alphabet", not how a scribe would have spelled a name. The signs for E, O and L are stand-ins: scribes used them that way only in later times, to spell foreign names such as Cleopatra.</p></footer>
+<footer><p><b>For grown-ups:</b> The converter matches each English letter to the closest Egyptian one-sound sign, one letter at a time. It is the usual playful "alphabet", not how a scribe would have spelled a name. The signs for E, O and L are stand-ins: scribes used them that way only in later times, to spell foreign names such as Cleopatra.</p></footer>
 </main>
 <script>
 (function(){
   var MAP={"A": "𓄿", "B": "𓃀", "C": "𓎡", "D": "𓂧", "E": "𓇋", "F": "𓆑", "G": "𓎼", "H": "𓉔", "I": "𓇋", "J": "𓆓", "K": "𓎡", "L": "𓃭", "M": "𓅓", "N": "𓈖", "O": "𓍯", "P": "𓊪", "Q": "𓈎", "R": "𓂋", "S": "𓋴", "T": "𓏏", "U": "𓅱", "V": "𓆑", "W": "𓅱", "X": "𓎡𓋴", "Y": "𓇋𓇋", "Z": "𓊃", "SH": "𓈙", "CH": "𓍿", "TH": "𓍿", "KH": "𓐍", "PH": "𓆑"};
-  var input=document.getElementById('name'), out=document.getElementById('out');
+  var input=document.getElementById('name'), out=document.getElementById('out'), join=document.getElementById('join');
   function pair(g,l){ var p=document.createElement('span'); p.className='pair'; var a=document.createElement('span'); a.className='g'; a.lang='egy'; a.textContent=g; var b=document.createElement('span'); b.className='l'; b.textContent=l; p.appendChild(a); p.appendChild(b); return p; }
   function draw(){
     var t=input.value.toUpperCase().slice(0,24); out.textContent='';
     var i=0, n=0;
     while(i<t.length){
       var two=t.substr(i,2);
-      if(two.length===2 && MAP[two]){ out.appendChild(pair(MAP[two],two)); i+=2; n++; continue; }
+      if(join.checked && two.length===2 && MAP[two]){ out.appendChild(pair(MAP[two],two)); i+=2; n++; continue; }
       var c=t[i];
       if(MAP[c]){ out.appendChild(pair(MAP[c],c)); n++; }
       else if(c===' ' && n){ var s=document.createElement('span'); s.className='gap'; out.appendChild(s); }
@@ -101,7 +109,7 @@ label{display:block;font-family:var(--font-display);font-weight:800;color:var(--
     }
     if(!n){ var e=document.createElement('span'); e.className='l'; e.textContent='Type a name using the letters A to Z'; out.appendChild(e); }
   }
-  input.addEventListener('input',draw); draw();
+  input.addEventListener('input',draw); join.addEventListener('change',draw); draw();
 })();
 </script>
 </body>
