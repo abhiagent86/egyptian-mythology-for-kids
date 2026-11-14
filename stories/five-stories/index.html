@@ -66,6 +66,13 @@ footer b{color:var(--gold)}
 .site-nav a{display:block;padding:6px 10px;border-radius:999px;color:#f7edcf;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.2;text-decoration:none;white-space:nowrap}
 .site-nav a:hover,.site-nav a:focus-visible{background:#16335d;outline:2px solid #f0b93f}
 .site-nav a[aria-current="page"]{background:#f0b93f;color:#10294d}
+/*progress*/
+.readbtn{align-self:flex-start;font:800 1rem var(--font-body);padding:10px 18px;border-radius:999px;border:3px solid var(--nile);background:#fff;color:var(--nile);cursor:pointer}
+.readbtn[aria-pressed="true"]{background:#2f8f46;border-color:#2f8f46;color:#fff}
+.readbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.readcount{margin:12px 0 0;display:inline-block;background:var(--lapis-deep);border:2px solid var(--gold);border-radius:999px;padding:6px 16px;font-weight:800;color:var(--gold);font-size:1rem}
+.num.done{background:#2f8f46;border-color:#2f8f46;color:#fff}
+/*/progress*/
 </style>
 </head>
 <body>
@@ -201,5 +208,26 @@ footer b{color:var(--gold)}
 </footer>
 
 </main>
+<!--progress--><script>
+function get(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}}
+function put(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+(function(){
+  var read=get('ek-read',[]); if(!Array.isArray(read)) read=[];
+  var stories=[].slice.call(document.querySelectorAll('article.story'));
+  var line=document.createElement('p'); line.className='readcount'; line.setAttribute('aria-live','polite');
+  document.querySelector('main header').appendChild(line);
+  function count(){
+    line.textContent = read.length ? 'You have read '+read.length+' of '+stories.length+' stories.'+(read.length===stories.length?' Well done!':'') : 'Tap "I read this story" at the end of each story to keep track.';
+  }
+  stories.forEach(function(a,i){
+    var n=i+1, b=document.createElement('button'), num=a.querySelector('.num');
+    b.type='button'; b.className='readbtn';
+    function draw(){ var on=read.indexOf(n)>=0; b.setAttribute('aria-pressed',on?'true':'false'); b.textContent=on?'\u2713 I read this story':'I read this story'; if(num) num.classList.toggle('done',on); }
+    b.addEventListener('click',function(){ var at=read.indexOf(n); if(at>=0) read.splice(at,1); else read.push(n); put('ek-read',read); draw(); count(); });
+    a.querySelector('.story-body').appendChild(b); draw();
+  });
+  count();
+})();
+</script><!--/progress-->
 </body>
 </html>

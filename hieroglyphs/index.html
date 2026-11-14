@@ -69,7 +69,7 @@ label{display:block;font-family:var(--font-display);font-weight:800;color:var(--
   <input id="name" type="text" value="Cleopatra" maxlength="24" autocomplete="off" autocapitalize="words" spellcheck="false">
   <p class="tick"><input id="join" type="checkbox"> <label for="join">Use one sign for the sounds SH, CH, TH, KH and PH</label></p>
   <div><div class="cartouche" id="out" aria-live="polite"></div></div>
-  <p class="hint">The oval frame is called a <b>cartouche</b>. Egyptians drew one around the name of a king or queen to keep it safe.</p>
+  <p class="hint">The oval frame is called a <b>cartouche</b>. Egyptians drew one around the name of a king or queen to keep it safe. This page remembers the last name you typed.</p>
 </section>
 <section class="card">
   <h2>The hieroglyph alphabet</h2>
@@ -109,7 +109,8 @@ label{display:block;font-family:var(--font-display);font-weight:800;color:var(--
     }
     if(!n){ var e=document.createElement('span'); e.className='l'; e.textContent='Type a name using the letters A to Z'; out.appendChild(e); }
   }
-  input.addEventListener('input',draw); join.addEventListener('change',draw); draw();
+  try{var sv=localStorage.getItem('ek-glyph-name');if(sv)input.value=sv;}catch(e){}
+  input.addEventListener('input',function(){draw();try{localStorage.setItem('ek-glyph-name',input.value.slice(0,24));}catch(e){}}); join.addEventListener('change',draw); draw();
 })();
 </script>
 </body>

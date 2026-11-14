@@ -49,6 +49,9 @@ footer p{margin:0 0 8px;max-width:46em}
 .site-nav a{display:block;padding:6px 10px;border-radius:999px;color:#f7edcf;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.2;text-decoration:none;white-space:nowrap}
 .site-nav a:hover,.site-nav a:focus-visible{background:#16335d;outline:2px solid #f0b93f}
 .site-nav a[aria-current="page"]{background:#f0b93f;color:#10294d}
+/*progress*/
+#qbest{font-size:1rem;color:var(--papyrus)}
+/*/progress*/
 </style>
 </head>
 <body>
@@ -79,7 +82,7 @@ footer p{margin:0 0 8px;max-width:46em}
           endEl.hidden=false;
           endEl.querySelector('h2').textContent='You got '+right+' out of '+total+'!';
           endEl.querySelector('p').textContent= right===total ? 'Perfect! You know Egypt as well as Thoth does.' : right>=total*0.7 ? 'Great work! You are a real expert on Egypt.' : 'Good try! Explore the other pages and have another go.';
-          endEl.scrollIntoView({behavior:'smooth',block:'center'});
+          document.dispatchEvent(new CustomEvent('quizdone',{detail:{right:right,total:total}}));endEl.scrollIntoView({behavior:'smooth',block:'center'});
         }
       });
     });
@@ -93,5 +96,20 @@ footer p{margin:0 0 8px;max-width:46em}
   show();
 })();
 </script>
+<!--progress--><script>
+function get(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}}
+function put(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+(function(){
+  var best=get('ek-quiz-best',null), sc=document.getElementById('score'), s=document.createElement('span');
+  s.id='qbest'; sc.parentNode.insertBefore(s,sc.nextSibling);
+  function show(){ s.textContent = best ? 'Best: '+best.right+' of '+best.total : ''; }
+  document.addEventListener('quizdone',function(e){
+    var d=e.detail, p=document.querySelector('#end p');
+    if(!best || d.right>best.right){ var had=!!best; best={right:d.right,total:d.total}; put('ek-quiz-best',best); if(had && p) p.textContent+=' That is a new best score!'; }
+    show();
+  });
+  show();
+})();
+</script><!--/progress-->
 </body>
 </html>

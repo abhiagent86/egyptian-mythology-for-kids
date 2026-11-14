@@ -34,6 +34,19 @@ img,svg{max-width:100%}
 .site-nav a{display:block;padding:6px 10px;border-radius:999px;color:#f7edcf;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.2;text-decoration:none;white-space:nowrap}
 .site-nav a:hover,.site-nav a:focus-visible{background:#16335d;outline:2px solid #f0b93f}
 .site-nav a[aria-current="page"]{background:#f0b93f;color:#10294d}
+/*progress*/
+.progress{padding:18px;background:var(--papyrus);color:var(--ink);border:3px solid var(--papyrus-edge);border-radius:22px}
+.progress h2{font-size:1.6rem;color:var(--lapis);margin-bottom:10px}
+.progress ul{list-style:none;margin:0 0 12px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.progress li{background:#fff7de;border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;gap:2px}
+.progress li b{font-family:var(--font-display);font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;color:var(--carnelian)}
+.progress li span{font-weight:800;font-size:1.15rem}
+.progress li a{color:var(--lapis)}
+.progress .stars{color:#c8922f;letter-spacing:.08em}
+.progress p{margin:0;font-size:.9rem;color:var(--ink)}
+.clear{font:800 .9rem var(--font-body);padding:6px 14px;border-radius:999px;border:2px solid var(--carnelian);background:transparent;color:var(--carnelian);cursor:pointer;margin-top:8px}
+.clear:focus-visible{outline:3px solid var(--nile);outline-offset:2px}
+/*/progress*/
 </style>
 </head>
 <body>
@@ -61,5 +74,36 @@ img,svg{max-width:100%}
   <li><a href="quiz/"><span class="age">Ages 6 to 12</span><h2>The Big Egypt Quiz</h2><span>Fifteen questions on myths, history and everyday life.</span><span class="go">Take the quiz</span></a></li>
 </ul>
 </main>
+<!--progress--><script>
+function get(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}}
+function put(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+(function(){
+  var read=get('ek-read',[]), quiz=get('ek-quiz-best',null), name=null, mummy=get('mummy-best',{});
+  try{ name=localStorage.getItem('ek-glyph-name'); }catch(e){}
+  var stars=0; for(var k in mummy){ if(mummy[k]>stars) stars=mummy[k]; }
+  var items=[];
+  if(Array.isArray(read) && read.length) items.push(['Stories read', read.length+' of 5', 'stories/five-stories/']);
+  if(quiz) items.push(['Quiz best', quiz.right+' of '+quiz.total, 'quiz/']);
+  if(stars) items.push(['Mummy game best', '\u2605\u2605\u2605'.slice(0,stars)+'\u2606\u2606\u2606'.slice(0,3-stars), 'mummy/', 'stars']);
+  if(name && name.trim()) items.push(['Your hieroglyph name', name.trim(), 'hieroglyphs/']);
+  if(!items.length) return;
+  var sec=document.createElement('section'); sec.className='card progress'; sec.setAttribute('aria-labelledby','prog-h');
+  var h=document.createElement('h2'); h.id='prog-h'; h.textContent='Your progress'; sec.appendChild(h);
+  var ul=document.createElement('ul');
+  items.forEach(function(it){ var li=document.createElement('li'), b=document.createElement('b'), a=document.createElement('a'), sp=document.createElement('span');
+    b.textContent=it[0]; a.href=it[2]; sp.textContent=it[1]; if(it[3]) sp.className=it[3]; a.appendChild(sp); li.appendChild(b); li.appendChild(a); ul.appendChild(li); });
+  sec.appendChild(ul);
+  var p=document.createElement('p'); p.textContent='This is saved only on this device, in this browser.'; sec.appendChild(p);
+  var c=document.createElement('button'); c.type='button'; c.className='clear'; c.textContent='Clear my progress';
+  var armed=false;
+  c.addEventListener('click',function(){
+    if(!armed){ armed=true; c.textContent='Tap again to clear everything'; setTimeout(function(){ armed=false; c.textContent='Clear my progress'; },4000); return; }
+    try{ ['ek-read','ek-quiz-best','ek-glyph-name','mummy-best'].forEach(function(k){ localStorage.removeItem(k); }); }catch(e){}
+    sec.remove();
+  });
+  sec.appendChild(c);
+  var tiles=document.querySelector('.tiles'); tiles.parentNode.insertBefore(sec, tiles);
+})();
+</script><!--/progress-->
 </body>
 </html>
