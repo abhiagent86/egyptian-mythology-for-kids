@@ -14,7 +14,7 @@ Website: https://abhiagent86.github.io/egyptian-mythology-for-kids/
 | [The Story of Egypt](history/) | 8–12 | A 5,000-year overview with a to-scale picture and a timeline |
 | [Write in Hieroglyphs](hieroglyphs/) | 6–12 | A name-to-hieroglyphs converter and an alphabet chart |
 | [Vegetarian Food in Egypt](food/) | 6–12 | Twelve meat-free dishes, snacks, sweets and drinks with pictures |
-| [Make a Mummy](mummy/) | 6–12 | A game: put the six steps of mummification in order, for a king or a cat |
+| [Make a Mummy](mummy/) | 6–12 | A mummification game for a king or a cat, with a mini-game per step, three levels and stars |
 | [The Big Egypt Quiz](quiz/) | 6–12 | Fifteen questions on myths, history and everyday life |
 
 ### Five Stories from Ancient Egypt
